@@ -1,0 +1,280 @@
+::-webkit-scrollbar { width: 6px; height: 6px; background: #eee; } /* width */
+::-webkit-scrollbar-track { background: #eee; border-radius: 5px; } /* Track */
+::-webkit-scrollbar-thumb { background: #ddd; border-radius: 5px; } /* Handle */
+::-webkit-scrollbar-thumb:hover { background: #ccc; } /* Handle on hover */
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Roboto', sans-serif;
+}
+:root{
+    --background: #E4E6EC;
+    --background-middle: #dddee2;
+    --color-light: #a9abb1;
+    --color-middle: #84858a;
+    --color-dark: #4d4e50;
+    --color-primary: #1F1C30;
+    --lighter-primary: rgba(31, 28, 48, .4);
+    --translucent-primary: rgba(31, 28, 48, .2);
+}
+body{
+    background: var(--background);
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+/* HEADER ============================================== */
+header{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-left: 1rem;
+    padding-right: 1rem;
+    height: 3.8rem;
+}
+header img{
+    height: 2rem;
+    border-radius: 50%;
+}
+header .nav-items{
+    list-style: none;
+}
+header .nav-items li{
+    display: inline;
+    padding: .4rem 1.2rem;
+
+    font-size: 85%;
+    
+    color: var(--color-light);
+    border-radius: 2px;
+    transition: .6s;
+}
+header .nav-items li:hover{
+    background: var(--background-middle);
+}
+header .nav-items li.active{
+    font-weight: bold;
+    color: var(--color-primary);
+    border-bottom: 4px solid var(--color-primary);
+}
+header .nav-items li a{
+    color: inherit;
+    text-decoration: none;
+}
+/* SECTION HOME ================================ */
+.container{
+    display: flex;
+    flex-direction: column;
+    margin: auto;
+    padding: 1rem 3rem;
+    max-width: 72rem;
+}
+.container .main-title{
+    line-height: 3.5rem;
+    font-size: 3.8rem;
+    margin-bottom: 1.4rem;
+}
+.content-articles{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    width: 100%;
+    flex-direction: row;
+}
+article{
+    margin: auto .7rem;
+    cursor: pointer;
+    border-bottom-right-radius: 10px;
+    margin-bottom: .3rem;
+
+    transition: .6s;
+}
+article:hover{
+    box-shadow: 0 20px 60px var(--lighter-primary);
+    transform: skewY(2deg);
+}
+.wrapper-image{
+    width: 16em;
+    height: 28rem;
+}
+.wrapper-image img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+.article-body{
+    display: flex;
+    flex-direction: column;
+    margin: auto;
+    padding: .8rem 1rem;
+    
+    max-width: 72rem;
+    max-height: 28rem;
+    overflow-y: auto;
+}
+.article-created-at{
+    color: var(--color-light);
+    font-size: 80%;
+}
+.article-subtitle{
+    color: var(--color-middle);
+    font-size: 95%;
+}
+.article-text{
+    display: none;
+    margin-top: 1rem;
+    letter-spacing: 1px;
+    color: var(--color-dark);
+}
+/* MAIN ARTICLE ==================================== */
+.main-article{
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+}
+.main-article .article-body{
+    display: flex;
+    flex: 1;
+    /* height: 100%; */
+}
+.main-article .article-text{
+    display: block;
+}
+/* SECTION ARTICLE =================================== */
+#section-article .container{
+    min-height: calc(100vh - 60.8px);
+}
+input, textarea{
+    background: transparent;
+    box-shadow: 0 20px 20px var(--translucent-primary);
+    border-bottom-right-radius: 10px;
+    border:none;
+    /* border-bottom: 1px solid var(--color-light); */
+
+    margin-bottom: 1rem;
+    padding: .8rem;
+    
+    color: var(--color-middle);
+    font-family: 'Roboto', sans-serif;
+}
+input::placeholder{ font-family: 'Roboto', sans-serif; }
+input:focus-within, textarea:focus-within{
+    border-bottom: 2px solid var(--color-light);
+    outline: 0;
+}
+.input-group{
+    display: flex;
+    flex-wrap: wrap;
+    gap: .2rem;
+}
+.input-group input{ flex: 1; }
+#content-article-editable{
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    position: relative;
+
+    box-shadow: 0 20px 20px var(--lighter-primary);
+    border-bottom-right-radius: 10px;
+}
+#article-editable{
+    height: 100%;
+    flex: 1;
+    padding: 1.2rem;
+    
+    color: var(--color-middle);
+    font-family: 'Roboto', sans-serif;
+    border-bottom-right-radius: 10px;
+    border:none;
+}
+#content-article-editable .tools{
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    left: 0;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    padding: .7rem 1.2rem;
+    border-top: 1px solid var(--color-light);
+    color: var(--color-primary);
+}
+/* SECTION EDITATION */
+.list-planets{
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+    margin-top: .4rem;
+}
+.list-planets .planet-item{
+    width: calc(50% - .5rem);
+    min-width: 15rem;
+    padding: .4rem .85rem;
+
+    border: 1px solid var(--color-light);
+    border-bottom-right-radius: 10px;
+    box-shadow: 0 0px 5px var(--translucent-primary);
+
+    cursor: pointer;
+    transition: .6s ease;
+}
+.list-planets .planet-item:hover{
+    background: var(--background-middle);
+    box-shadow: 0 5px 5px var(--translucent-primary);
+}
+.list-planets .planet-item h3{ color: var(--color-primary); }
+.list-planets .planet-item span{
+    font-size: 85%;
+    color: var(--color-middle);
+}
+.btn-edition{
+    font-family: 'Roboto', sans-serif;
+    font-weight: bold;
+    font-size: 1.1rem;
+    text-align: center;
+
+    border-bottom: 4px solid var(--color-primary) !important;
+    
+    max-width: 15rem;
+    
+    padding: .3rem 1.3rem !important;
+    margin-top: 2rem !important;
+}
+/* UTILITIES ================================================= */
+.text-light-gradient{
+    background-image: linear-gradient(90deg,#a9abb1,#dddee2);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+.btn-clean{
+    padding: 0;
+    margin: 0;
+
+    background: transparent;
+    border: none;
+    border-radius: 3px;
+    
+    display: flex;
+    align-items: center;
+
+    cursor: pointer;
+    transition: .6s;
+}
+.btn-clean:hover{
+    background: var(--color-primary);
+    color: var(--color-light)
+}
+.btn-clean.active{
+    background: var(--color-primary);
+    color: var(--color-light)
+}
+.flex-center{
+    display: flex;
+    justify-content: center;
+}

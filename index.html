@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Matth | Planets</title>
+    <link rel="stylesheet" href="assets/css/styles.css"/>
+    <link rel="stylesheet" href="assets/css/modal.css">
+    <link rel="shortcut icon" href="assets/favicon.png" type="image/png">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;400;700;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+</head>
+<body>
+    <header>
+        <img src="assets/favicon.png" alt="Matth">
+        <ul class="nav-items">
+            <li id="to-section-home" class="nav-link">
+                <a href="#" onclick="toggleSection('section-home')">HOME</a></li>
+            <li id="to-section-article" class="nav-link">
+                <a href="#" onclick="toggleSection('section-article')">NEW ARTICLE</a></li>
+            <li id="to-section-edition" class="nav-link">
+                <a href="#" onclick="toggleSection('section-edition')">EDIT ARTICLE</a></li>
+        </ul>
+    </header>
+    <section id="section-home" style="display:none;">
+        <div class="container">
+            <h1 class="main-title">Planets | <span class="text-light-gradient">Orbs</span></h1>
+            <div class="content-articles">
+            </div>
+        </div>
+    </section>
+    <section id="section-article" style="display:none;">
+        <div class="container">
+            <h1 class="main-title">Discover <span class="text-light-gradient">New</span> <span class="title-target">Planets</span></h1>
+            <div class="input-group">
+                <input type="hidden" name="id" id="id" style="display:none"/>
+                <input type="text" name="name" id="name" placeholder="Enter the name of the planet..."/>
+                <input type="text" name="name" id="km" placeholder="Enter the distance from the sun..."/>
+            </div>
+            <input type="text" name="image" id="image" placeholder="Enter the image URL..."/>
+            <div id="content-article-editable">
+                <iframe id="article-editable" name="textField">
+                </iframe>
+                <div class="tools">
+                    <div style="display: flex; gap: 1rem;flex-wrap: wrap;">
+                        <!-- DECORATION -->
+                        <button class="btn-clean" onclick="addTool($(this))" data-cmd="bold">
+                            <span class="material-icons">format_bold</span></button>
+                        <button class="btn-clean" onclick="addTool($(this))" data-cmd="italic">
+                            <span class="material-icons">format_italic</span></button>
+                        <button class="btn-clean" onclick="addTool($(this))" data-cmd="underline">
+                            <span class="material-icons">format_underline</span></button>
+
+                        <!-- ALIGN -->
+                        <button class="btn-clean" onclick="addTool($(this))" data-cmd="justifyLeft">
+                            <span class="material-icons">format_align_left</span></button>
+                        <button class="btn-clean" onclick="addTool($(this))" data-cmd="justifyRight">
+                            <span class="material-icons">format_align_right</span></button>
+                        <button class="btn-clean" onclick="addTool($(this))" data-cmd="justifyCenter">
+                            <span class="material-icons">format_align_center</span></button>
+                        <button class="btn-clean" onclick="addTool($(this))" data-cmd="justifyFustify">
+                            <span class="material-icons">format_align_justify</span></button>
+                        
+                        <!-- LIST -->
+                        <button class="btn-clean" onclick="addTool($(this))" data-cmd="insertUnorderedList">
+                            <span class="material-icons">format_list_bulleted</span></button>
+                        <button class="btn-clean" onclick="addTool($(this))" data-cmd="insertOrderedList">
+                            <span class="material-icons">format_list_numbered</span></button>
+                        
+                        <!-- EXTRA -->
+                        <button class="btn-clean" onclick="addTool($(this))" data-cmd="insertImage">
+                            <span class="material-icons">wallpaper</span></button>
+                        <button class="btn-clean" onclick="addTool($(this))" data-cmd="createLink">
+                            <span class="material-icons">add_link</span></button>
+                        <button class="btn-clean" onclick="addTool($(this))" data-cmd="showCode">
+                            <span class="material-icons">code</span></button>
+                    </div>
+                    <button class="btn-clean" onclick="sendArticle()"><span class="material-icons">send</span></button>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section id="section-edition" style="display:none;">
+        <div class="container">
+            <h1 class="main-title">Edit <span class="text-light-gradient">Your</span> Planets</h1>
+            <div class="list-planets">
+            </div>
+            <div class="flex-center">
+                <button class="btn-clean btn-edition" onclick="storePlanets()">CONVERT TO JSON</button>
+            </div>
+        </div>
+    </section>
+    <!-- Modal -->
+    <div class="modal" id="modalConvertToJSON">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title">Convert to JSON</h3>
+                <button type="button" class="btn-clean" 
+                 onclick="$('#modalConvertToJSON').removeClass('modal-open')">
+                    <span class="material-icons">close</span>
+                </button>
+            </div>
+            <div class="modal-body" style="flex-direction: column;">
+                <div style="width: 100%; display: flex; position: relative;">
+                    <textarea rows="10" style="flex: 1;" id="textareaClipboard"></textarea>
+                    <button type="button" class="btn-clean" style="position: absolute; top: 0; right: 0;  padding: .4rem; background: var(--background-middle); border-radius: 5px;" onclick="copyToClipboard();">
+                        <span class="material-icons">flip_to_front</span>
+                    </button>
+                </div>
+                <span class="alert-clipboard" style="display: none; background-color: var(--background-middle); text-align: center; padding: .4rem; color: var(--color-middle); margin-bottom: 1rem; border-bottom-right-radius: 10px;">Copied to clipboard</span>
+            </div>
+        </div>
+    </div>
+    <script src="assets/js/jquery.min.js"></script>
+    <script src="https://igorescobar.github.io/jQuery-Mask-Plugin/js/jquery.mask.min.js"></script>
+    <script src="assets/js/script.js"></script>
+    <script>
+        $(function(){ 
+            $('#km').mask('###.###.###.###.###.###.###.##0', {reverse: true});
+        });
+    </script>
+</body>
+</html>
