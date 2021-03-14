@@ -1,13 +1,14 @@
 # Rich Text Editor
 
 ## Content
-    - Page of posts with animations and a text editor allowing stylization of text, alignment, inclusion of links and images, among other functions.
+    - Posts page with animations and text editor.
+    - It allows text styling, alignment, inclusion of links and images, among other features.
 
 ## Screens
 ![Home](./assets/screens/planets.png)
-![Home with article selected](./assets/screens/image.jpg)
+![Home with article selected](./assets/screens/planet-selected.png)
 ![New](./assets/screens/new-planet.png)
-![Edit](./assets/screens/edit-planet.jpg)
+![Edit](./assets/screens/edit-planet.png)
 
 ## Reference
 [YOUTUBE](https://www.youtube.com/watch?v=fOKaD4NXHIs)
